@@ -1,0 +1,131 @@
+body{
+	font-family: sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+.human{
+	position: absolute;
+
+	top: 0;
+	left: 0;
+
+	width: 20px;
+	height: 20px;
+}
+
+#player{}
+
+#inventory{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 150px;
+	display: flex;
+
+	justify-content: center;
+}
+
+.cell{
+	border-radius: 12px;
+
+	border: 1px solid #ccb;
+
+	background: #eed;
+	background-repeat: no-repeat;
+
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+
+	display: flex;
+	padding: 8px;
+
+	align-items: center;
+	justify-content: center;
+}
+
+
+.cell>*{
+	background-size: contain;
+	position: relative;
+	height: 100px;
+	width: 100px;
+}
+
+.cell>*:before{
+	content: '∞';
+	position: absolute;
+
+	right: 0;
+	bottom: -14px;
+
+	color: #000;
+	font-size: 3em;
+	font-weight: bold;
+}
+
+
+.cross{
+	position: relative;
+	/*left: 50%;*/
+	/*top: 50%;*/
+}
+
+.cross:before{
+	position: absolute;
+	left: -10px;
+	top: -20px;
+
+	width: 20px;
+	height: 40px;
+
+	background: #0005;
+}
+.cross:after{}
+
+/**/
+
+#game{
+	overflow: hidden;
+	perspective: 1000px;
+	height: 100vh;
+	width: 100vw;
+}
+
+#world{
+	transform-style: preserve-3d;
+	height: 100vh;
+	width: 100vw;
+	/*transform: translate3d(0px,300px,0px);*/
+}
+
+.block{
+	position: absolute;
+	transform-style: preserve-3d;
+
+	text-align: center;
+	height: 200px;
+	width: 200px;
+	/*border-bottom: 200px solid #0005;
+	border-left: 100px solid  transparent;
+	border-right: 100px solid transparent;*/
+	background-size: cover;
+}
+
+.side{
+	background-image: inherit;
+	background-size: cover;
+
+	position: absolute;
+	height: 200px;
+	width: 200px;
+}
+
+.side.f  { transform: rotateY(  0deg) translateZ(100px); }
+.side.r  { transform: rotateY( 90deg) translateZ(100px); }
+.side.b   { transform: rotateY(180deg) translateZ(100px); }
+.side.l   { transform: rotateY(-90deg) translateZ(100px); }
+.side.t    { transform: rotateX( 90deg) translateZ(100px); }
+.side.bo { transform: rotateX(-90deg) translateZ(100px); }
