@@ -23,7 +23,7 @@ window.onload = function(){
 	stone0 = new Stone(-5,1,-5);
 	stone1 = new Stone(-5,2,-5);
 	stone2 = new Stone(-5,3,-4);
-	stone2 = new Glass(-4,1,-5);
+	glass = new Glass(-4,1,-5);
 
 	world_blocks.push(new Sealantern(2,3,2));
 
@@ -38,6 +38,9 @@ window.onload = function(){
 	player.inventory.set_slot(2,'Sealantern',3);
 	player.inventory.set_slot(3,'Sand',3);
 	player.inventory.set_slot(4,'Gravel',3);
+	player.inventory.set_slot(5,'Tulips',3);
+	player.inventory.set_slot(6,'Glass',3);
+
 
 
 	setInterval(function () {
@@ -53,7 +56,7 @@ window.onload = function(){
 
 
 window.addEventListener('wheel',function(e){
-	console.log(e)
+	// console.log(e)
 	if(e.wheelDeltaY < 0){
 		player.inventory.next_slot();
 	}
@@ -64,37 +67,43 @@ window.addEventListener('wheel',function(e){
 
 
 window.addEventListener('mousemove', function(e){
-	if(e.buttons){
+	if(e.buttons == 1){
 	if (e.movementX > 0) {
-		player.rotateX(1);
+		player.rotateX(1 * rot_speed);
 	}
 	if (e.movementX < 0) {
-		player.rotateX(-1);
+		player.rotateX(-1 * rot_speed);
 	}
 	if (e.movementY > 0) {
-		player.rotateY(1);
+		player.rotateY(1 * rot_speed);
 	}
 	if (e.movementY < 0) {
-		player.rotateY(-1);
+		player.rotateY(-1 * rot_speed);
 	}
 }
 });
 
 window.addEventListener('keydown',function(e){
-	console.log(e);
+	// console.log(e);
 	if (Vertical.hasOwnProperty(e.key)) {
 		player.move.Vertical(Vertical[e.key]);
 	}
 	if (Horizontal.hasOwnProperty(e.key)) {
 		player.move.Horizontal(Horizontal[e.key]);
 	}
-});
+
+	if (Heigh.hasOwnProperty(e.key)) {
+		player.move.Heigh(Heigh[e.key]);
+
+		var pos = document.getElementById('world').style.transform.split('(')[1].split(')')[0].split(',')
+		player.position = new Vector3(parseInt(pos[0]),parseInt(pos[1]),parseInt(pos[2]));
+	}});
 
 window.addEventListener('mousedown',function(e){
 	if (e.srcElement.classList.contains('side')&& e.buttons == 2){
 		if (!player.inventory.isempty()) {
-			console.log(e.srcElement.classList[1]);
-			console.log(e);
+			// console.log(e.srcElement.classList[1]);
+			// console.log(e);
 			var transform = e.srcElement.parentElement.style.transform.split('(')[1].split(')')[0].split(',')
 
 			//document.getElementById('world').clientWidth / 2 - (100 + 200 * x)
@@ -103,32 +112,35 @@ window.addEventListener('mousedown',function(e){
 			var y = - (parseInt(transform[1]) -400 )/ 200;
 			var z = parseInt(transform[2]) / 200;
 
-			console.log(transform)
+			// console.log(transform)
 
 			var string = player.inventory.current_slot().name
-
-			switch (e.srcElement.classList[1]) {
-				case 'f':
-					world_blocks.push(eval('new ' + string + '(' +x+ ',' +y+ ',' +(z+1)+ ')') )
-					break;
-				case 'l':
-					world_blocks.push(eval('new ' + string + '(' +(x+1)+ ',' +y+ ',' +z+ ')') )
-					break;
-				case 'r':
-					world_blocks.push(eval('new ' + string + '(' +(x-1)+ ',' +y+ ',' +z+ ')') )
-					break;
-				case 'b':
-					world_blocks.push(eval('new ' + string + '(' +x+ ',' +y+ ',' +(z-1)+ ')') )
-					break;
-				case 't':
-					world_blocks.push(eval('new ' + string + '(' +x+ ',' +(y+1)+ ',' +z+ ')') )
-					break;
-				case 'bo':
-					world_blocks.push(eval('new ' + string + '(' +x+ ',' +(y-1)+ ',' +z+ ')') )
-					break;
-				default:
-					// statements_def
-					break;
+			if (world_blocks.length < maxblocks) {
+				switch (e.srcElement.classList[1]) {
+					case 'f':
+						world_blocks.push(eval('new ' + string + '(' +x+ ',' +y+ ',' +(z+1)+ ')') )
+						break;
+					case 'l':
+						world_blocks.push(eval('new ' + string + '(' +(x+1)+ ',' +y+ ',' +z+ ')') )
+						break;
+					case 'r':
+						world_blocks.push(eval('new ' + string + '(' +(x-1)+ ',' +y+ ',' +z+ ')') )
+						break;
+					case 'b':
+						world_blocks.push(eval('new ' + string + '(' +x+ ',' +y+ ',' +(z-1)+ ')') )
+						break;
+					case 't':
+						world_blocks.push(eval('new ' + string + '(' +x+ ',' +(y+1)+ ',' +z+ ')') )
+						break;
+					case 'bo':
+						world_blocks.push(eval('new ' + string + '(' +x+ ',' +(y-1)+ ',' +z+ ')') )
+						break;
+					default:
+						// statements_def
+						break;
+				}
+			}else{
+				alert("Слишком много блоков. \n Перезагрузите страницу, или поменяйте количество блоков в файле конфиг")
 			}
 		}
 	}

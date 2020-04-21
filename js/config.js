@@ -1,12 +1,56 @@
+
+
+
+
+
+/* ============================ General settings ============================ */
+
+
+
+
+
+maxblocks = 250;
+
+slot_border = '2px solid #888'
+slot_color = '#eee';
+selecter_slot_color = '#bbb'
+
+
+
+
+
+/* ============================ Move Speed ============================ */
+
+
+
+
+
+rot_speed = 1
+
 Vertical = {
-	'w' : 10,
-	's': -10,
+	'w' : 40,
+	's': -40,
 }
 
 Horizontal = {
-	'a' : 10,
-	'd': -10,
+	'a' : 40,
+	'd': -40,
 }
+
+Heigh = {
+	' ': 1,
+	'Shift': -1,
+}
+
+
+
+
+
+/* ============================ Inventory sprites ============================ */
+
+
+
+
 
 Inv_Sprites = {
 	'Stone' : 'content/textures/Stone/stone.png',
@@ -14,6 +58,9 @@ Inv_Sprites = {
 	'Sealantern':'content/textures/Sealantern/arm.png',
 	'Sand' : 'content/textures/Sand/sand.png',
 	'Gravel' : 'content/textures/Sand/gravel.png',
+	'Tulips' : 'content/textures/Flower/Tulip/tulipR.png',
+	'Glass' : 'content/textures/Glass/White/glass.png',
+
 }
 
 Arm_Sprites = {
@@ -22,4 +69,7 @@ Arm_Sprites = {
 	'Sealantern':'content/textures/Sealantern/arm.png',
 	'Sand' : 'content/textures/Sand/sand.png',
 	'Gravel' : 'content/textures/Sand/gravel.png',
+	'Tulips' : 'content/textures/Flower/Tulip/tulipR.png',
+	'Glass' : 'content/textures/Glass/White/glass.png',
 }
+
