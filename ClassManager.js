@@ -56,7 +56,6 @@ class Slot{
 	}
 
 	set_slot(){
-		console.log(this.cell.children.length);
 		if (this.cell.children.length <= 0 ) {
 			var sprite = document.createElement('div');
 			sprite.className = 'sprite '+ this.name;
@@ -105,6 +104,14 @@ class Inventory{
 			this.select_slot(this.current + 1);
 		}else{
 			this.select_slot(0);
+		}
+	}
+
+	prev_slot(){
+		if (this.current > 0) {
+			this.select_slot(this.current - 1);
+		}else{
+			this.select_slot(this.slots.length - 1);
 		}
 	}
 
@@ -274,5 +281,89 @@ class Glass{
 		}
 		this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
 		document.getElementById('world').appendChild(this.block)
+	}
+}
+
+class Sealantern{
+	constructor(x = 0,y = 0,z = 0){
+		this.world = document.getElementById('world');
+
+		this.x = 200 - (200 * x);
+		this.y = 400 - (200 * y);
+		this.z = 200 * z;
+		this.texture = 'content/textures/Sealantern/block.png';
+
+		this.block = document.createElement('div');
+		this.block.className = 'block anim Sealantern';
+		this.block.innerHTML = command
+
+		this.block.style.backgroundImage = 'url("' + this.texture+ '")';
+
+		this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
+		document.getElementById('world').appendChild(this.block)
+	}
+}
+
+class Sand{
+	constructor(x = 0,y = 0,z = 0){
+		this.world = document.getElementById('world');
+
+		this.x = 200 - (200 * x);
+		this.y = 400 - (200 * y);
+		this.z = 200 * z;
+		this.texture = 'content/textures/Sand/sand.png';
+
+		this.block = document.createElement('div');
+		this.block.className = 'block falling Sand';
+		this.block.innerHTML = command;
+		this.block.style.backgroundImage = 'url("' + this.texture+ '")';
+		this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
+		document.getElementById('world').appendChild(this.block)
+
+		// this.check();
+	}
+
+	check(){
+		for (var i = 0; i < world_blocks.length; i++) {
+			if(world_blocks[i] != null){
+				if(world_blocks[i].x == this.x && world_blocks[i].z == this.z && world_blocks[i].y > this.y - 200){
+					// console.log(world_blocks[i]);
+					this.y = world_blocks[i].y - 100;
+					this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
+				}
+			}
+		}
+	}
+}
+
+class Gravel{
+	constructor(x = 0,y = 0,z = 0){
+		this.world = document.getElementById('world');
+
+		this.x = 200 - (200 * x);
+		this.y = 400 - (200 * y);
+		this.z = 200 * z;
+		this.texture = 'content/textures/Sand/gravel.png';
+
+		this.block = document.createElement('div');
+		this.block.className = 'block falling Sand';
+		this.block.innerHTML = command;
+		this.block.style.backgroundImage = 'url("' + this.texture+ '")';
+		this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
+		document.getElementById('world').appendChild(this.block)
+
+		// this.check();
+	}
+
+	check(){
+		for (var i = 0; i < world_blocks.length; i++) {
+			if(world_blocks[i] != null){
+				if(world_blocks[i].x == this.x && world_blocks[i].z == this.z && world_blocks[i].y > this.y - 200){
+					// console.log(world_blocks[i]);
+					this.y = world_blocks[i].y - 100;
+					this.block.style.transform = 'translate3d('+ this.x +'px,'+ this.y +'px,'+ this.z +'px)';
+				}
+			}
+		}
 	}
 }

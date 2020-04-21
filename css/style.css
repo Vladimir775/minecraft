@@ -102,6 +102,8 @@ body{
 }
 
 .block{
+    background-position: -400px;
+    background-repeat: no-repeat;
 	position: absolute;
 	transform-style: preserve-3d;
 
@@ -112,6 +114,36 @@ body{
 	border-left: 100px solid  transparent;
 	border-right: 100px solid transparent;*/
 	background-size: cover;
+}
+
+.falling{
+	transition: 2s;
+}
+
+.anim{
+	animation: animated 2s steps(1) infinite;
+}
+
+@keyframes animated{
+	80%{
+		background-position-y: 0px;
+	}
+	60%{
+		background-position-y: 200px;
+	}
+	40%{
+		background-position-y: 400px;
+	}
+	20%{
+		background-position-y: 600px;
+	}
+	0%,100%{
+		background-position-y: 800px;
+	}
+}
+
+.anim .side{
+	background-position-y:inherit;
 }
 
 .side{

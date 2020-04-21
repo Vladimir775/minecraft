@@ -24,6 +24,10 @@ window.onload = function(){
 	stone1 = new Stone(-5,2,-5);
 	stone2 = new Stone(-5,3,-4);
 	stone2 = new Glass(-4,1,-5);
+
+	world_blocks.push(new Sealantern(2,3,2));
+
+	world_blocks.push(new Sand(-2,5,-3));
 	// dirt2 = new Dirt(1,-1,0);
 	// stone1 = new Stone(1,0,0);
 	// stone2 = new Stone(0,0,-3);
@@ -31,11 +35,31 @@ window.onload = function(){
 
 	player.inventory.set_slot(0,'Dirt',3);
 	player.inventory.set_slot(1,'Stone',3);
+	player.inventory.set_slot(2,'Sealantern',3);
+	player.inventory.set_slot(3,'Sand',3);
+	player.inventory.set_slot(4,'Gravel',3);
+
+
+	setInterval(function () {
+        for (var i = 0; i < world_blocks.length; i++) {
+			if(world_blocks[i] != null){
+				if(world_blocks[i] instanceof Sand || world_blocks[i] instanceof Gravel){
+					world_blocks[i].check();
+				}
+			}
+		}
+    }, 100);
 }
 
 
 window.addEventListener('wheel',function(e){
-	player.inventory.next_slot();
+	console.log(e)
+	if(e.wheelDeltaY < 0){
+		player.inventory.next_slot();
+	}
+	if(e.wheelDeltaY > 0){
+		player.inventory.prev_slot();
+	}
 });
 
 
@@ -67,7 +91,7 @@ window.addEventListener('keydown',function(e){
 });
 
 window.addEventListener('mousedown',function(e){
-	if (e.srcElement.classList.contains('side')){
+	if (e.srcElement.classList.contains('side')&& e.buttons == 2){
 		if (!player.inventory.isempty()) {
 			console.log(e.srcElement.classList[1]);
 			console.log(e);
