@@ -1,4 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+#input{
+	display: none;
+}
+
+a,label{
+	left: calc(50% - 150px);
+	z-index: 100000;
+	position: absolute;
+	width: 300px;
+	display: flex;
+	justify-content: center;
+
+	font-family: 'Press Start 2P', cursive; font-weight: bold;
+	color: #fff;
+
+	text-decoration: none;
+
+	padding: 16px 0;
+
+	background-color: #aaa;
+	background-image: url("https://lh3.googleusercontent.com/proxy/nQoLqxYc6cgHkuj-HmXbBGn2mEndox0HBWDbhwSSBB9-S9XisDXSwUcQ-Mq-YVyJVkiNGcwrW5IK5G75c9uEqCGn_9l09659PX56EQkYVrqNO5OuG4PnZ0ztdDV30ce6nB3KYmHVOClcAnj97CJLT4Cs0pskDW-Z3ycwTDQ");
+
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-blend-mode: darken;
+	border: 2px solid #444;
+}
+
+a:hover,label:hover{
+	border:2px solid #fff;
+	box-shadow: 0px 8px 8px #0005;
+}
+
+p{
+	 font-family: 'Press Start 2P', cursive; font-weight: bold;
+	color: #ddd;
+	text-shadow:
+    4px 0px 1px #444,
+    4px 4px 1px #444,
+    4px 4px 1px #444,
+    10px 8px 4px rgba(16,16,16,0.2);
+}
+
 body{
+	/*font-family: 'Press Start 2P', cursive;*/
+
 	font-family: sans-serif;
 	padding: 0;
 	margin: 0;
@@ -15,9 +64,30 @@ body{
 	height: 20px;
 }
 
+#pause{
+	position: absolute;
+	top: 0;
+	left:0;
+	right:0;
+	bottom: 0;
+	z-index: 100;
+	background: #000a;
+}
+
 #player{}
 
 #inventory{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	/*height: 150px;*/
+	background: #0008;
+	justify-content: center;
+}
+
+#hotbar{
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -36,9 +106,9 @@ body{
 	background: #eee;
 	background-repeat: no-repeat;
 
-	width: 100px;
-	height: 100px;
-	margin: 10px;
+	width: 9vw;
+	height: 9vw;
+	margin: 0.1vw;
 
 	display: flex;
 	padding: 8px;
@@ -54,8 +124,8 @@ body{
 .cell>*{
 	background-size: contain;
 	position: relative;
-	height: 100px;
-	width: 100px;
+	height: 9vw;
+	width: 9vw;
 }
 
 .cell>*:before{
@@ -71,23 +141,36 @@ body{
 }
 
 
-.cross{
-	position: relative;
-	/*left: 50%;*/
-	/*top: 50%;*/
+#cross{
+	position: absolute;
+	left: 50%;
+	top: 50%;
 }
 
-.cross:before{
+#cross:before{
+	content: '';
 	position: absolute;
-	left: -10px;
+	left: -2px;
 	top: -20px;
 
-	width: 20px;
+	width: 4px;
 	height: 40px;
 
-	background: #0005;
+	background: #ccc;
 }
-.cross:after{}
+
+#cross:after{
+	content: '';
+	position: absolute;
+
+	top: -2px;
+	left: -20px;
+
+	width: 40px;
+	height: 4px;
+
+	background: #ccc;
+}
 
 /**/
 
@@ -105,7 +188,7 @@ body{
 	/*transform: translate3d(0px,300px,0px);*/
 }
 
-.block,.flower{
+.block,.flower,.fence{
     background-position: -400px;
     background-repeat: no-repeat;
 	position: absolute;
@@ -120,7 +203,7 @@ body{
 	background-size: cover;
 }
 
-.flower>.side{
+.flower>.side,.fence>.side{
 	opacity: 0
 }
 
@@ -129,10 +212,14 @@ body{
 }
 
 .anim{
-	animation: animated 2s steps(1) infinite;
+	animation: animated_5 2s steps(1) infinite;
 }
 
-@keyframes animated{
+.anim2{
+	animation: anim_fire 2s steps(1) infinite;
+}
+
+@keyframes animated_5{
 	80%{
 		background-position-y: 0px;
 	}
@@ -150,11 +237,76 @@ body{
 	}
 }
 
-.anim .side{
+@keyframes anim_fire{
+	95%{
+		background-position-y: 0px;
+	}
+	90%{
+		background-position-y: 200px;
+	}
+	85%{
+		background-position-y: 400px;
+	}
+	80%{
+		background-position-y: 600px;
+	}
+	75%{
+		background-position-y: 800px;
+	}
+	70%{
+		background-position-y: 1000px;
+	}
+	65%{
+		background-position-y: 1200px;
+	}
+	60%{
+		background-position-y: 1400px;
+	}
+	55%{
+		background-position-y: 1600px;
+	}
+	50%{
+		background-position-y: 1800px;
+	}
+
+	45%{
+		background-position-y: 2000px;
+	}
+	40%{
+		background-position-y: 2200px;
+	}
+	35%{
+		background-position-y: 2400px;
+	}
+	30%{
+		background-position-y: 2600px;
+	}
+	25%{
+		background-position-y: 2800px;
+	}
+	20%{
+		background-position-y: 3000px;
+	}
+	15%{
+		background-position-y: 3200px;
+	}
+	10%{
+		background-position-y: 3400px;
+	}
+	5%{
+		background-position-y: 3600px;
+	}
+	0%,100%{
+		background-position-y: 3800px;
+	}
+}
+
+
+.anim .side, .anim2 .side{
 	background-position-y:inherit;
 }
 
-.side, .diag1,.diag2{
+.side, .diag1,.diag2, .fencep{
 	background-image: inherit;
 	background-size: cover;
 
@@ -163,12 +315,54 @@ body{
 	width: 200px;
 }
 
+.anim2 .side.f  { transform: rotateY(  0deg) translateZ(99px); }
+.anim2 .side.r  { transform: rotateY( 90deg) translateZ(99px); }
+.anim2 .side.b   { transform: rotateY(180deg) translateZ(99px); }
+.anim2 .side.l   { transform: rotateY(-90deg) translateZ(99px); }
+
 .side.f  { transform: rotateY(  0deg) translateZ(100px); }
 .side.r  { transform: rotateY( 90deg) translateZ(100px); }
 .side.b   { transform: rotateY(180deg) translateZ(100px); }
 .side.l   { transform: rotateY(-90deg) translateZ(100px); }
-.side.t    { transform: rotateX( 90deg) translateZ(100px); }
-.side.bo { transform: rotateX(-90deg) translateZ(100px); }
+.side.t    { transform: rotateX(90deg) rotateZ(-90deg) translateZ(100px); }
+.side.bo { transform: rotateX(-90deg) rotateZ(90deg) translateZ(100px); }
 
-.diag1{ transform: rotateY(45deg)}
-.diag2{ transform: rotateY(-45deg)}
+.diag1{ width: 250px; transform: rotateY(45deg)}
+.diag2{ width: 250px; transform: rotateY(-45deg)}
+
+.null{
+	opacity: 0;
+}
+
+.fencep{
+	transform-style: preserve-3d;
+}
+
+.cube{
+	transform: translateZ(29.9px) translateX(10px) translateY(60px);
+}
+
+.cube,.cube>.side{
+	background-image: inherit;
+	background-size: cover;
+
+	position: absolute;
+	height: 60px;
+	width: 60px;
+	transform-style: preserve-3d;
+}
+
+.cube .side.f  { transform: rotateY(  0deg) translateZ(30px); }
+.cube .side.r  { transform: rotateY( 90deg) translateZ(30px); }
+.cube .side.b   { transform: rotateY(180deg) translateZ(30px); }
+.cube .side.l   { transform: rotateY(-90deg) translateZ(30px); }
+.cube .side.t    { transform: rotateX(90deg) rotateZ(-90deg) translateZ(30px); }
+.cube .side.bo { transform: rotateX(-90deg) rotateZ(90deg) translateZ(30px); }
+
+
+.fencep.f  { width: 80px; transform: rotateY(  0deg) translateZ(40px) translateX(60px); }
+.fencep.r  { width: 80px; transform: rotateY( 90deg) translateZ(100px); }
+.fencep.b   { width: 80px; transform: rotateY(180deg) translateZ(40px) translateX(-60px); }
+.fencep.l   { width: 80px; transform: rotateY(-90deg) translateZ(-20px); }
+.fencep.t    { width: 80px; height: 80px; transform: rotateX(90deg) rotateZ(-90deg) translateZ(39.9px) translateY(60px);}
+.fencep.bo { width: 80px; height: 80px; transform: rotateX(-90deg) rotateZ(90deg) translateZ(159.9px) translateY(-60px); }

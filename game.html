@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	<link rel='icon' href='content/grass_side.png' type='image/x-icon'/ >
+
+
+	<script src="js/config.js"></script>
+
+	<script src="js/save.js"></script>
+
+	<script src="ClassManager.js"></script>
+	<script src="js.js"></script>
+</head>
+<body ondrag="return false" oncontextmenu="return false">
+		<div id="pause" style="display: none;">
+			<input type="file" id="input" oninput="load()">
+			<a style="top: 200px;" onclick="setPause()">Play</a>
+			<label style="top: 300px;" for="input">Load World</label>
+			<a style="top: 400px;" onclick="save_world()">Save World</a>
+			<a style="top: 500px;" href="help.html">Help</a>
+			<a style="top: 600px;" href="/">Quit Game</a>
+		</div>
+	<div id="game">
+		<div id="wrot" style="transform: rotateX(0deg) rotateY(0deg)">
+			<div id="world" style="transform: translate3d(0px,400px,0px)">
+			</div>
+		</div>
+		<div class="player">
+			<div id="cross"></div>
+			<div id="hotbar">
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			<div id="inventory" style="display: none">
+				<div style="padding-top: 10%; display: grid;grid-template-columns: repeat(9, 1fr);">
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+				<div class="cell"></div>
+			</div>
+			</div>
+			<div class="arm">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

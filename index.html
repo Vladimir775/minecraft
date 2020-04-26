@@ -2,37 +2,42 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Game</title>
+	<title>Main</title>
 	<link rel="stylesheet" href="css/style.css">
 
 	<link rel='icon' href='content/grass_side.png' type='image/x-icon'/ >
 
-	<script src="js/config.js"></script>
 	<script src="ClassManager.js"></script>
-	<script src="js.js"></script>
+
 </head>
-<body ondrag="return false" oncontextmenu="return false">
-	<div id="game">
-		<div id="wrot" style="transform: rotateX(0deg) rotateY(0deg)">
-			<div id="world" style="transform: translate3d(0px,400px,0px)">
-			</div>
-		</div>
-		<div class="player">
-			<div class="cross"></div>
-			<div id="inventory">
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-				<div class="cell"></div>
-			</div>
-			<div class="arm">
-			</div>
-		</div>
+<body>
+<div id="game">
+	<a style="top: 300px;" href="/game.html">Play</a>
+	<a style="top: 400px;" href="help.html">Help</a>
+	<a style="top: 500px;" onclick="alert('ты в браузере, глупенький')">Quit Game</a>
+	<p style="transform: rotateZ(10deg); top: 0;left: 0;right: 0; display: flex; justify-content: center;align-items:center; z-index: 1000000; position: absolute; font-size: 6em;"><span style="font-size: 0.3em; padding: 8px; margin-top: 50px;">не </span>Minecraft</p>
+	<div id="wrot" style="transform: rotateX(-20deg)">
+		<div id="world" style="transform: translate3d(0px, 800px, -1000px)"></div>
 	</div>
+</div>
+<script>
+	logo = Math.round(Math.random() *3) + 1;
+
+	world_blocks = [];
+
+	fetch('/content/worlds/world'+logo+'.txt')
+		.then(function(response) {
+    	response.text().then(function(text) {
+    	var arr = text.split(',');
+		// console.log(arr);
+		for (var i = 0; i < arr.length; i++) {
+	    	data = arr[i].split(' ');
+	    	world_blocks.push(eval('new ' + data[3] + '(' +data[0]+ ',' +data[1]+ ',' +data[2]+ ')'));
+	    	// console.log(arr[i]);
+		}
+    });
+  });
+
+</script>
 </body>
 </html>
